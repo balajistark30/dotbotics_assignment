@@ -14,11 +14,36 @@ class APICALL {
     );
   }
 
-  static Future<http.Response> addLocation(
-      String username, String password) async {
-    return await http.post(
-      Uri.parse('http://68.178.165.76:8081/v1/login'),
-      body: jsonEncode({"username": username, "password": password}),
+  static Future<http.Response> addLocation({
+    required String locationId,
+    required String customerName,
+    required String locationName,
+    required String simNo,
+    required int numberOfLightsConnected,
+    required int loadConnected,
+    required String latitude,
+    required String longitude,
+    required int cumConsumption,
+    required String stateCode,
+    required int locationPort,
+    required String locationIp,
+  }) async {
+    return await http.put(
+      Uri.parse('http://68.178.165.76:8081/v1/Location'),
+      body: jsonEncode({
+        "locationId": locationId,
+        "customerName": customerName,
+        "locationName": locationName,
+        "simNo": simNo,
+        "numberOfLightsConnected": numberOfLightsConnected,
+        "loadConnected": loadConnected,
+        "latitude": latitude,
+        "longitude": longitude,
+        "cumConsumption": cumConsumption,
+        "stateCode": stateCode,
+        "locationPort": locationPort,
+        "locationIp": locationIp,
+      }),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -32,7 +57,6 @@ class APICALL {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
-    print(response.body);
     return jsonDecode(response.body) as Map<String, dynamic>;
   }
 }

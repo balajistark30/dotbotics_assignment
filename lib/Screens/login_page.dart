@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dot_botics_assignment/loader.dart';
 import 'package:flutter/material.dart';
-import 'Second_screen.dart';
+import 'second_screen.dart';
 import 'package:dot_botics_assignment/Networking/apicall.dart';
 
 class LoginPage extends StatefulWidget {

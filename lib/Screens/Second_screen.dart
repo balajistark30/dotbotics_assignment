@@ -1,3 +1,6 @@
+// ignore_for_file: file_names
+
+import 'package:dot_botics_assignment/Screens/add_location.dart';
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatefulWidget {
@@ -25,35 +28,38 @@ class _SecondScreenState extends State<SecondScreen> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.account_circle))
         ],
       ),
-      body: Container(
-        child: Column(
-          children: [
-            for (Map<String, dynamic> value in widget.data["data"])
-              location_widget(
-                  '${value["locationId"]}:${value["customerName"]} ${value["locationName"]}'),
-            Center(
-              child: SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Perform login action
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff5FB65C),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+      body: Column(
+        children: [
+          for (Map<String, dynamic> value in widget.data["data"])
+            locationWidget(
+                '${value["locationId"]}:${value["customerName"]} ${value["locationName"]}'),
+          Center(
+            child: SizedBox(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      fullscreenDialog: true,
+                      builder: (_) => const AddLocation(),
                     ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff5FB65C),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Text('Add'),
                 ),
+                child: const Text('Add'),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  Column location_widget(String name) {
+  Column locationWidget(String name) {
     return Column(
       children: [
         Padding(
